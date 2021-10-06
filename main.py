@@ -69,11 +69,37 @@ def test_get_newton_sqrt():
     assert get_newton_sqrt(3, 2) == 1.7321428571428572
     assert get_newton_sqrt(21, 4) == 4.582578583339913
 
+
+def is_superprime(n):
+    '''
+    functia verifica daca prefixele numarului sunt prime
+    :param n: numar intreg
+    :return: adevarat daca toate prefixele numarului sunt prime si fals in caz contrar
+    '''
+    while n>0:
+        if is_prime(n) == False:
+            return False
+        n=n//10
+    return True
+
+def test_is_superprime():
+    '''
+    testam daca functia este corecta
+    :return:adevarat daca  numarul este superprim si fals in caz contrar
+    '''
+    assert is_superprime(233) == True
+    assert is_superprime(237) == False
+    assert is_superprime(13) == True
+    assert is_superprime(1237) == False
+    assert is_superprime(53) == True
+
+
 def menu():
     print("Alegeti optiunea:")
     print("1.Conjectura lui Goldbach")
     print("2.Calculul radicalului folosind metoda lui Newton")
-    print("x.Iesire")
+    print("3.Numar superprim")
+    print("0.Iesire")
 
 
 def main():
@@ -87,10 +113,16 @@ def main():
             n=int(input("n="))
             steps=int(input("step="))
             print(get_newton_sqrt(n, steps))
+        if option == 3:
+            n=int(input("n="))
+            print(is_superprime(n))
+
     menu()
     option = int(input("Option="))
 
-main()
+
+if __name__ == '__main__':
+    main()
 
 '''
 la problema 3 exista solutie pentru orice n numar par mai mare decat 3. 
